@@ -1,0 +1,36 @@
+[
+    {
+        "on": {
+            "eventType": "death",
+            "eventPhase": "live"
+        },
+        "do": [
+            {
+                "integration": "spotify",
+                "action": "change_volume",
+                "parameters": [
+                    {
+                        "levelPercentage": 60
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "on": {
+            "eventType": "spawn",
+            "eventPhase": "live"
+        },
+        "do": [
+            {
+                "integration": "spotify",
+                "action": "change_volume",
+                "parameters": [
+                    {
+                        "levelPercentage": 0
+                    }
+                ]
+            }
+        ]
+    }
+]
