@@ -5,5 +5,8 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true
+  },
+  "ts-node": {
+    "files": true
   }
 }
