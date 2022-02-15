@@ -33,9 +33,9 @@ export default class ConfigurationHelper {
 
     private static isValid = (json: any, index: number): boolean => {
         let executions: any = json["do"]
-        let matchEvent: any = json["on"]
+        let matchEvents: any = json["on"]
         let isValid: boolean = json
-            && this.isMatchEventValid(matchEvent)
+            && Array.isArray(matchEvents) && matchEvents.every(this.isMatchEventValid)
             && Array.isArray(executions) && executions.every(this.isExecutionValid)
 
         if (!isValid) {
@@ -62,7 +62,7 @@ export default class ConfigurationHelper {
 
     private static toTrigger = (json: any): Trigger => {
         return {
-            on: this.toMatchEvent(json["on"]),
+            on: json["on"].map(this.toMatchEvent),
             do: json["do"].map(this.toExecution)
         }
     } 
@@ -76,7 +76,7 @@ export default class ConfigurationHelper {
 
     public static fromJson = (): Configuration => {
         // TODO: Un-hardcode
-        let location = path.resolve(__dirname, 'configuration.json');
+        let location = path.resolve(__dirname, '../configuration.json');
         let json = JSON.parse(fs.readFileSync(location, 'utf8'))
         return this.createConfiguration(json);
     }

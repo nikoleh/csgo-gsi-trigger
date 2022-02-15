@@ -1,9 +1,11 @@
 [
     {
-        "on": {
-            "eventType": "death",
-            "eventPhase": "live"
-        },
+        "on": [
+            {
+                "eventType": "death",
+                "eventPhase": "live"
+            }
+        ],
         "do": [
             {
                 "integration": "spotify",
@@ -17,10 +19,12 @@
         ]
     },
     {
-        "on": {
-            "eventType": "spawn",
-            "eventPhase": "live"
-        },
+        "on": [
+            {
+                "eventType": "spawn",
+                "eventPhase": "live"
+            }
+        ],
         "do": [
             {
                 "integration": "spotify",
