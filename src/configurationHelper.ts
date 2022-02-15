@@ -67,7 +67,7 @@ export default class ConfigurationHelper {
         }
     } 
 
-    private static parseJson = (json: any): Configuration => {
+    private static createConfiguration = (json: any): Configuration => {
         if (!Array.isArray(json)) {
             throw new Error("Configuration is not an array");
         }
@@ -78,6 +78,6 @@ export default class ConfigurationHelper {
         // TODO: Un-hardcode
         let location = path.resolve(__dirname, 'configuration.json');
         let json = JSON.parse(fs.readFileSync(location, 'utf8'))
-        return this.parseJson(json);
+        return this.createConfiguration(json);
     }
 }
