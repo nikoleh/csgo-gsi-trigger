@@ -3,15 +3,15 @@ export interface MatchEvent {
     eventPhase: string
 }
 
-export interface Execution {
-    integration: string,
-    action: string,
+export interface Action {
+    handler: string,
+    name: string,
     parameters: Array<{[key: string]: number}>
 }
 
 export interface Trigger {
-    on: MatchEvent,
-    do: Execution
+    on: MatchEvent[],
+    do: Action[]
 }
 
 export type Configuration = Array<Trigger>

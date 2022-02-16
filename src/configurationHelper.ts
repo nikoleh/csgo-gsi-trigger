@@ -1,12 +1,12 @@
-import { MatchEvent, Execution, Trigger, Configuration } from "./types"
+import { MatchEvent, Action, Trigger, Configuration } from "./types"
 import * as fs from 'fs'
 import * as path from 'path'
 
 export default class ConfigurationHelper {
     private static isExecutionValid = (json: any): boolean => {
         let parameters: any = json["parameters"]
-        let isValid: boolean = typeof json["integration"] === 'string'
-            && typeof json["action"] === 'string'
+        let isValid: boolean = typeof json["handler"] === 'string'
+            && typeof json["name"] === 'string'
             && Array.isArray(parameters)
             && parameters
                 .every(parameter => Object
@@ -52,10 +52,10 @@ export default class ConfigurationHelper {
         }
     }
 
-    private static toExecution = (json: any): Execution => {
+    private static toExecution = (json: any): Action => {
         return {
-            integration: json["integration"],
-            action: json["action"],
+            handler: json["handler"],
+            name: json["name"],
             parameters: json["parameters"]
         }
     }
