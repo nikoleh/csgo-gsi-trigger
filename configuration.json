@@ -10,11 +10,10 @@
             {
                 "handler": "spotify",
                 "name": "change_volume",
-                "parameters": [
-                    {
-                        "levelPercentage": 60
-                    }
-                ]
+                "parameters": 
+                {
+                    "levelPercentage": 30
+                }
             }
         ]
     },
@@ -29,11 +28,10 @@
             {
                 "handler": "spotify",
                 "name": "change_volume",
-                "parameters": [
-                    {
-                        "levelPercentage": 0
-                    }
-                ]
+                "parameters":
+                {
+                    "levelPercentage": 0
+                }
             }
         ]
     }

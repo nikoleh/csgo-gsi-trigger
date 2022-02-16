@@ -6,7 +6,7 @@ export interface MatchEvent {
 export interface Action {
     handler: string,
     name: string,
-    parameters: Array<{[key: string]: number}>
+    parameters: Record<string, any>
 }
 
 export interface Trigger {

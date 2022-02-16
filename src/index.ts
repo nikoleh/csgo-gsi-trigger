@@ -3,6 +3,7 @@ import CSGOListener from "./listener/csgoListener"
 
 import handlers from './handlers'
 
+//TODO: Read options from config/env
 let listener = new CSGOListener({ steamId: '', listenerPort: 3000, gsiToken: '' });
 
 let triggers = ConfigurationHelper.fromJson()

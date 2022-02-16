@@ -3,18 +3,16 @@ import * as fs from 'fs'
 import * as path from 'path'
 
 export default class ConfigurationHelper {
-    private static isExecutionValid = (json: any): boolean => {
+    private static isActionValid = (json: any): boolean => {
         let parameters: any = json["parameters"]
         let isValid: boolean = typeof json["handler"] === 'string'
             && typeof json["name"] === 'string'
-            && Array.isArray(parameters)
-            && parameters
-                .every(parameter => Object
-                    .values(parameter)
-                        .every(value => typeof value === 'number'))
-
+            && typeof parameters === 'object'
+            && Object.keys(parameters)
+                .every(key => parameters[key] !== null && parameters[key] !== typeof undefined)
+                
         if (!isValid) {
-            console.warn("Invalid execution", json)
+            console.warn("Invalid action", json)
         }
 
         return isValid
@@ -32,11 +30,11 @@ export default class ConfigurationHelper {
     }
 
     private static isValid = (json: any, index: number): boolean => {
-        let executions: any = json["do"]
+        let actions: any = json["do"]
         let matchEvents: any = json["on"]
         let isValid: boolean = json
             && Array.isArray(matchEvents) && matchEvents.every(this.isMatchEventValid)
-            && Array.isArray(executions) && executions.every(this.isExecutionValid)
+            && Array.isArray(actions) && actions.every(this.isActionValid)
 
         if (!isValid) {
             console.warn(`An invalid trigger found on index ${index}`)
@@ -52,7 +50,7 @@ export default class ConfigurationHelper {
         }
     }
 
-    private static toExecution = (json: any): Action => {
+    private static toAction = (json: any): Action => {
         return {
             handler: json["handler"],
             name: json["name"],
@@ -63,7 +61,7 @@ export default class ConfigurationHelper {
     private static toTrigger = (json: any): Trigger => {
         return {
             on: json["on"].map(this.toMatchEvent),
-            do: json["do"].map(this.toExecution)
+            do: json["do"].map(this.toAction)
         }
     } 
 
