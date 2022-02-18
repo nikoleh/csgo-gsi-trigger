@@ -12,5 +12,5 @@ triggers
     .forEach(trigger => trigger.on.forEach(
         matchEvent => listener.on(
             matchEvent.eventType, () => trigger.do.forEach(
-                execution => handlers.forEach(
-                    handler => handler.handle(execution))))))
+                action => handlers.forEach(
+                    handler => handler.handle(action))))))
