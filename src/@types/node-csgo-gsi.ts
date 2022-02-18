@@ -1,4 +1,6 @@
 declare module "node-csgo-gsi" {
+    import { EventEmitter } from "events";
+
     // MVP typings
     interface MatchStats {
         deaths: number
@@ -14,7 +16,6 @@ declare module "node-csgo-gsi" {
         state: PlayerState
     }
 
-    import { EventEmitter } from "events";
     class CSGOGSI extends EventEmitter {
         constructor(options: {port: number, authToken: string[]});
 
